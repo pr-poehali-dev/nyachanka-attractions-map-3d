@@ -97,5 +97,467 @@
 
   body {
     @apply bg-background text-foreground;
+    font-family: "Golos Text", sans-serif;
   }
+}
+
+/* ===== MAP APP STYLES ===== */
+
+.map-app {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  background: #0e1020;
+  color: #e8eaf0;
+  overflow: hidden;
+}
+
+/* Header */
+.map-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 24px;
+  height: 60px;
+  background: rgba(14, 16, 32, 0.95);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+  flex-shrink: 0;
+  backdrop-filter: blur(12px);
+  z-index: 10;
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.logo-badge {
+  width: 36px;
+  height: 36px;
+  background: linear-gradient(135deg, #4ecdc4, #44a8b3);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #0e1020;
+  flex-shrink: 0;
+}
+
+.site-title {
+  font-family: "Oswald", sans-serif;
+  font-size: 18px;
+  font-weight: 600;
+  color: #fff;
+  letter-spacing: 0.04em;
+  line-height: 1;
+}
+
+.site-sub {
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.4);
+  line-height: 1;
+  margin-top: 3px;
+  letter-spacing: 0.02em;
+}
+
+.header-right {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.layer-toggle {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 7px 14px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-family: "Golos Text", sans-serif;
+  font-weight: 500;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.05);
+  color: rgba(255, 255, 255, 0.5);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.layer-toggle.active {
+  background: rgba(78, 205, 196, 0.15);
+  border-color: rgba(78, 205, 196, 0.4);
+  color: #4ecdc4;
+}
+
+.layer-toggle:hover {
+  background: rgba(255, 255, 255, 0.08);
+  color: rgba(255, 255, 255, 0.8);
+}
+
+/* Main layout */
+.main-layout {
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+}
+
+/* Sidebar */
+.sidebar {
+  width: 240px;
+  flex-shrink: 0;
+  background: rgba(18, 20, 38, 0.98);
+  border-right: 1px solid rgba(255, 255, 255, 0.06);
+  padding: 16px 12px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.sidebar-section {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.sidebar-label {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.28);
+  padding: 0 6px;
+  margin-bottom: 2px;
+}
+
+/* District list */
+.district-list {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.district-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 9px 10px;
+  border-radius: 8px;
+  cursor: pointer;
+  border: 1px solid transparent;
+  background: transparent;
+  color: rgba(255, 255, 255, 0.6);
+  font-family: "Golos Text", sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  text-align: left;
+  transition: all 0.18s;
+  width: 100%;
+}
+
+.district-item:hover {
+  background: rgba(255, 255, 255, 0.05);
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.district-item.active {
+  background: color-mix(in srgb, var(--district-color) 15%, transparent);
+  border-color: color-mix(in srgb, var(--district-color) 40%, transparent);
+  color: #fff;
+}
+
+.district-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--district-color);
+  flex-shrink: 0;
+  box-shadow: 0 0 6px var(--district-color);
+}
+
+.district-name {
+  flex: 1;
+}
+
+.district-pop {
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.28);
+  font-weight: 400;
+}
+
+/* Category list */
+.category-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+
+.category-item {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 5px 10px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-family: "Golos Text", sans-serif;
+  font-weight: 500;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: transparent;
+  color: rgba(255, 255, 255, 0.45);
+  cursor: pointer;
+  transition: all 0.18s;
+}
+
+.category-item:hover {
+  background: rgba(255, 255, 255, 0.07);
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.category-item.active {
+  background: rgba(78, 205, 196, 0.15);
+  border-color: rgba(78, 205, 196, 0.5);
+  color: #4ecdc4;
+}
+
+/* District info card */
+.district-info {
+  position: relative;
+  background: color-mix(
+    in srgb,
+    var(--district-color) 10%,
+    rgba(18, 20, 38, 0.9)
+  );
+  border: 1px solid color-mix(in srgb, var(--district-color) 35%, transparent);
+  border-radius: 12px;
+  padding: 14px;
+  animation: slideIn 0.2s ease;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.close-info {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: rgba(255, 255, 255, 0.07);
+  border: none;
+  color: rgba(255, 255, 255, 0.4);
+  border-radius: 6px;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.close-info:hover {
+  background: rgba(255, 255, 255, 0.12);
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.info-name {
+  font-family: "Oswald", sans-serif;
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--district-color);
+  margin-bottom: 6px;
+  letter-spacing: 0.03em;
+  padding-right: 24px;
+}
+
+.info-desc {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.55);
+  line-height: 1.5;
+  margin-bottom: 12px;
+}
+
+.info-stats {
+  display: flex;
+  gap: 12px;
+}
+
+.stat-item {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.4);
+}
+
+/* Map */
+.map-container {
+  flex: 1;
+  position: relative;
+  overflow: hidden;
+  background: #0d0f1e;
+  background-image:
+    radial-gradient(
+      ellipse at 30% 40%,
+      rgba(78, 205, 196, 0.04) 0%,
+      transparent 60%
+    ),
+    radial-gradient(
+      ellipse at 70% 70%,
+      rgba(201, 177, 255, 0.04) 0%,
+      transparent 60%
+    );
+}
+
+.map-wrap {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.district-svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* POI Popup */
+.poi-popup {
+  position: absolute;
+  bottom: 64px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(18, 20, 38, 0.96);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 14px;
+  padding: 16px 20px;
+  min-width: 220px;
+  max-width: 280px;
+  backdrop-filter: blur(16px);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+  animation: slideIn 0.2s ease;
+}
+
+.popup-close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: rgba(255, 255, 255, 0.06);
+  border: none;
+  color: rgba(255, 255, 255, 0.35);
+  border-radius: 6px;
+  width: 22px;
+  height: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.popup-close:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.popup-emoji {
+  font-size: 28px;
+  margin-bottom: 8px;
+}
+
+.popup-name {
+  font-family: "Oswald", sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  color: #fff;
+  margin-bottom: 6px;
+  letter-spacing: 0.02em;
+  padding-right: 20px;
+}
+
+.popup-desc {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.5);
+  line-height: 1.5;
+  margin-bottom: 10px;
+}
+
+.popup-district {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 11px;
+  color: rgba(78, 205, 196, 0.8);
+}
+
+/* Map controls */
+.map-controls {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.ctrl-btn {
+  width: 36px;
+  height: 36px;
+  background: rgba(18, 20, 38, 0.9);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  color: rgba(255, 255, 255, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.15s;
+  backdrop-filter: blur(8px);
+}
+
+.ctrl-btn:hover {
+  background: rgba(255, 255, 255, 0.08);
+  color: rgba(255, 255, 255, 0.9);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+/* Map stats bar */
+.map-stats {
+  position: absolute;
+  bottom: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(18, 20, 38, 0.88);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 20px;
+  padding: 7px 16px;
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.45);
+  backdrop-filter: blur(10px);
+  white-space: nowrap;
+}
+
+.stats-sep {
+  opacity: 0.3;
+}
+
+/* Scrollbar */
+.sidebar::-webkit-scrollbar {
+  width: 3px;
+}
+.sidebar::-webkit-scrollbar-track {
+  background: transparent;
+}
+.sidebar::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 2px;
 }
