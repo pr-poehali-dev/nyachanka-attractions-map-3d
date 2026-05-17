@@ -1,85 +1,93 @@
 import { useState } from "react";
 import Icon from "@/components/ui/icon";
 
+const MAP_IMAGE = "https://cdn.poehali.dev/projects/95cff1ec-7098-44d2-8623-42311ca605b6/files/f56ced8a-ea49-47fb-94a6-1c44f33162e1.jpg";
+
 const DISTRICTS = [
   {
     id: "center",
-    name: "Центральный",
+    name: "Центр",
+    nameVi: "Trung Tâm",
     color: "#4ECDC4",
-    description: "Исторический центр города с административными зданиями",
-    area: "12.4 км²",
-    population: "89 тыс.",
-    path: "M 300 200 L 420 180 L 460 260 L 430 340 L 350 360 L 270 320 L 250 240 Z",
-    labelX: 355,
-    labelY: 275,
+    description: "Главный туристический район: набережная, отели, рестораны",
+    area: "8.2 км²",
+    population: "112 тыс.",
+    path: "M 310 230 L 390 215 L 415 290 L 400 360 L 330 375 L 285 320 L 280 255 Z",
+    labelX: 350,
+    labelY: 298,
   },
   {
     id: "north",
     name: "Северный",
+    nameVi: "Phía Bắc",
     color: "#FF6B6B",
-    description: "Промышленный район с современными жилыми кварталами",
-    area: "18.7 км²",
-    population: "124 тыс.",
-    path: "M 250 100 L 420 80 L 420 180 L 300 200 L 250 200 Z",
-    labelX: 335,
-    labelY: 148,
-  },
-  {
-    id: "east",
-    name: "Восточный",
-    color: "#FFE66D",
-    description: "Культурный район с парками и музеями",
-    area: "15.2 км²",
-    population: "97 тыс.",
-    path: "M 420 180 L 530 150 L 560 280 L 500 360 L 430 340 L 460 260 Z",
-    labelX: 490,
-    labelY: 255,
+    description: "Жилой район, порт, рынки, башни Чамов По Нагар",
+    area: "14.5 км²",
+    population: "88 тыс.",
+    path: "M 240 120 L 390 100 L 390 215 L 310 230 L 280 255 L 220 200 Z",
+    labelX: 310,
+    labelY: 168,
   },
   {
     id: "south",
     name: "Южный",
-    color: "#A8E6CF",
-    description: "Курортная зона с набережной и пляжами",
-    area: "21.0 км²",
-    population: "78 тыс.",
-    path: "M 270 320 L 350 360 L 430 340 L 500 360 L 480 460 L 300 470 L 240 400 Z",
-    labelX: 370,
-    labelY: 405,
+    nameVi: "Phía Nam",
+    color: "#FFE66D",
+    description: "Пляжный курорт, Vinpearl, Long Beach, острова",
+    area: "19.8 км²",
+    population: "65 тыс.",
+    path: "M 285 320 L 330 375 L 400 360 L 420 440 L 320 470 L 240 430 L 230 360 Z",
+    labelX: 332,
+    labelY: 408,
   },
   {
     id: "west",
     name: "Западный",
+    nameVi: "Phía Tây",
+    color: "#A8E6CF",
+    description: "Горные районы, водопады, буддийские пагоды",
+    area: "22.1 км²",
+    population: "47 тыс.",
+    path: "M 130 150 L 240 120 L 220 200 L 280 255 L 285 320 L 230 360 L 140 300 L 120 220 Z",
+    labelX: 200,
+    labelY: 255,
+  },
+  {
+    id: "island",
+    name: "Острова",
+    nameVi: "Đảo",
     color: "#C9B1FF",
-    description: "Деловой район с торговыми центрами",
-    area: "14.8 км²",
-    population: "102 тыс.",
-    path: "M 150 180 L 250 100 L 250 200 L 300 200 L 270 320 L 240 400 L 140 350 L 120 240 Z",
-    labelX: 205,
-    labelY: 270,
+    description: "Острова Хон Тре, Хон Мун — коралловые рифы и снорклинг",
+    area: "6.4 км²",
+    population: "5 тыс.",
+    path: "M 480 200 L 530 185 L 550 240 L 520 275 L 470 265 L 455 220 Z",
+    labelX: 503,
+    labelY: 232,
   },
 ];
 
 const POI = [
-  { id: 1, name: "Исторический музей", category: "museum", emoji: "🏛️", x: 355, y: 260, district: "center", desc: "Богатейшая коллекция экспонатов XVIII–XX вв." },
-  { id: 2, name: "Центральный парк", category: "park", emoji: "🌳", x: 310, y: 300, district: "center", desc: "30 гектаров зелёных зон для отдыха" },
-  { id: 3, name: "Кафедральный собор", category: "church", emoji: "⛪", x: 390, y: 240, district: "center", desc: "Архитектурный памятник XIX века" },
-  { id: 4, name: "Северный рынок", category: "market", emoji: "🛒", x: 340, y: 130, district: "north", desc: "Крупнейший продовольственный рынок" },
-  { id: 5, name: "Арт-галерея", category: "museum", emoji: "🎨", x: 480, y: 200, district: "east", desc: "Современное искусство и временные выставки" },
-  { id: 6, name: "Ботанический сад", category: "park", emoji: "🌺", x: 510, y: 300, district: "east", desc: "Более 5000 видов растений" },
-  { id: 7, name: "Пляж Солнечный", category: "beach", emoji: "🏖️", x: 380, y: 430, district: "south", desc: "Лучший городской пляж с инфраструктурой" },
-  { id: 8, name: "Набережная", category: "park", emoji: "🚶", x: 320, y: 450, district: "south", desc: "3 км прогулочной набережной" },
-  { id: 9, name: "Бизнес-центр", category: "business", emoji: "🏢", x: 180, y: 280, district: "west", desc: "Крупнейший деловой кластер города" },
-  { id: 10, name: "Торговый квартал", category: "market", emoji: "🛍️", x: 200, y: 330, district: "west", desc: "Шоппинг и рестораны мирового уровня" },
+  { id: 1, name: "Набережная Чан Фу", category: "park", emoji: "🌊", x: 405, y: 285, district: "center", desc: "Главная пешеходная набережная 6 км вдоль пляжа" },
+  { id: 2, name: "Пляж Нячанг", category: "beach", emoji: "🏖️", x: 425, y: 320, district: "center", desc: "Белоснежный городской пляж — визитная карточка города" },
+  { id: 3, name: "Башни Чамов По Нагар", category: "temple", emoji: "🏯", x: 265, y: 170, district: "north", desc: "Индуистские башни VIII–IX вв., архитектурный шедевр" },
+  { id: 4, name: "Рыбный рынок Дам", category: "market", emoji: "🐟", x: 310, y: 150, district: "north", desc: "Самый большой рыбный рынок региона, работает с 4 утра" },
+  { id: 5, name: "Oceanpark Vinpearl", category: "attraction", emoji: "🎡", x: 505, y: 220, district: "island", desc: "Остров-курорт с аквапарком и сафари-парком" },
+  { id: 6, name: "Длинный пляж", category: "beach", emoji: "🏝️", x: 360, y: 445, district: "south", desc: "Самый длинный пляж Нячанга, спокойная вода" },
+  { id: 7, name: "Пагода Лонг Шон", category: "temple", emoji: "🛕", x: 195, y: 220, district: "west", desc: "Буддийская пагода с огромной статуей Будды" },
+  { id: 8, name: "Водопад Бахо", category: "nature", emoji: "💧", x: 155, y: 260, district: "west", desc: "Живописный трёхуровневый водопад в джунглях" },
+  { id: 9, name: "Институт океанографии", category: "museum", emoji: "🐠", x: 380, y: 355, district: "south", desc: "Один из лучших аквариумов Вьетнама" },
+  { id: 10, name: "Ночной рынок", category: "market", emoji: "🌙", x: 355, y: 255, district: "center", desc: "Сувениры, морепродукты, уличная еда до 22:00" },
 ];
 
 const CATEGORIES = [
   { id: "all", label: "Все", icon: "Map" },
-  { id: "museum", label: "Музеи", icon: "Landmark" },
-  { id: "park", label: "Парки", icon: "TreePine" },
-  { id: "church", label: "Храмы", icon: "Building" },
-  { id: "market", label: "Рынки", icon: "ShoppingBag" },
   { id: "beach", label: "Пляжи", icon: "Waves" },
-  { id: "business", label: "Бизнес", icon: "Briefcase" },
+  { id: "temple", label: "Храмы", icon: "Building" },
+  { id: "market", label: "Рынки", icon: "ShoppingBag" },
+  { id: "park", label: "Парки", icon: "TreePine" },
+  { id: "museum", label: "Музеи", icon: "Landmark" },
+  { id: "nature", label: "Природа", icon: "Mountain" },
+  { id: "attraction", label: "Аттракции", icon: "Star" },
 ];
 
 export default function Index() {
@@ -105,8 +113,8 @@ export default function Index() {
             <Icon name="MapPin" size={18} />
           </div>
           <div>
-            <h1 className="site-title">ГородКарта</h1>
-            <p className="site-sub">Интерактивный путеводитель</p>
+            <h1 className="site-title">Нячанг</h1>
+            <p className="site-sub">Интерактивная карта города</p>
           </div>
         </div>
         <div className="header-right">
@@ -115,7 +123,7 @@ export default function Index() {
             onClick={() => setShowLayer(v => !v)}
           >
             <Icon name="Layers" size={15} />
-            <span>Туристический слой</span>
+            <span>Достопримечательности</span>
           </button>
         </div>
       </header>
@@ -123,7 +131,7 @@ export default function Index() {
       <div className="main-layout">
         <aside className="sidebar">
           <div className="sidebar-section">
-            <p className="sidebar-label">Районы города</p>
+            <p className="sidebar-label">Районы Нячанга</p>
             <div className="district-list">
               {DISTRICTS.map(d => (
                 <button
@@ -133,7 +141,10 @@ export default function Index() {
                   onClick={() => setActiveDistrict(activeDistrict === d.id ? null : d.id)}
                 >
                   <span className="district-dot" />
-                  <span className="district-name">{d.name}</span>
+                  <div className="district-names">
+                    <span className="district-name">{d.name}</span>
+                    <span className="district-name-vi">{d.nameVi}</span>
+                  </div>
                   <span className="district-pop">{d.population}</span>
                 </button>
               ))}
@@ -142,7 +153,7 @@ export default function Index() {
 
           {showLayer && (
             <div className="sidebar-section">
-              <p className="sidebar-label">Категории объектов</p>
+              <p className="sidebar-label">Категории</p>
               <div className="category-list">
                 {CATEGORIES.map(c => (
                   <button
@@ -164,6 +175,7 @@ export default function Index() {
                 <Icon name="X" size={14} />
               </button>
               <h3 className="info-name">{district.name} район</h3>
+              <p className="info-name-vi">{district.nameVi}</p>
               <p className="info-desc">{district.description}</p>
               <div className="info-stats">
                 <div className="stat-item">
@@ -177,25 +189,34 @@ export default function Index() {
               </div>
             </div>
           )}
+
+          <div className="sea-label">
+            <Icon name="Waves" size={14} />
+            <span>Южно-Китайское море</span>
+          </div>
         </aside>
 
         <main className="map-container">
           <div className="map-wrap">
+            <div
+              className="map-bg"
+              style={{ backgroundImage: `url(${MAP_IMAGE})` }}
+            />
+
             <svg
               viewBox="100 60 500 440"
               className="district-svg"
               onClick={() => { setActiveDistrict(null); setSelectedPoi(null); }}
             >
               <defs>
-                <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
-                  <path d="M 40 0 L 0 0 0 40" fill="none" stroke="rgba(255,255,255,0.04)" strokeWidth="0.5"/>
-                </pattern>
                 <filter id="glow">
                   <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
                   <feMerge><feMergeNode in="coloredBlur"/><feMergeNode in="SourceGraphic"/></feMerge>
                 </filter>
+                <filter id="shadow">
+                  <feDropShadow dx="0" dy="1" stdDeviation="2" floodColor="rgba(0,0,0,0.8)"/>
+                </filter>
               </defs>
-              <rect x="100" y="60" width="500" height="440" fill="url(#grid)"/>
 
               {DISTRICTS.map(d => {
                 const isHovered = hoveredDistrict === d.id;
@@ -206,33 +227,50 @@ export default function Index() {
                     <path
                       d={d.path}
                       fill={d.color}
-                      fillOpacity={isDimmed ? 0.06 : isActive ? 0.45 : isHovered ? 0.32 : 0.18}
+                      fillOpacity={isDimmed ? 0.04 : isActive ? 0.42 : isHovered ? 0.28 : 0.14}
                       stroke={d.color}
-                      strokeWidth={isActive ? 2.5 : isHovered ? 2 : 1}
-                      strokeOpacity={isDimmed ? 0.2 : 0.85}
+                      strokeWidth={isActive ? 2.5 : isHovered ? 2 : 1.2}
+                      strokeOpacity={isDimmed ? 0.15 : 0.9}
                       style={{ cursor: "pointer", transition: "all 0.25s ease" }}
                       onClick={e => { e.stopPropagation(); setActiveDistrict(activeDistrict === d.id ? null : d.id); setSelectedPoi(null); }}
                       onMouseEnter={() => setHoveredDistrict(d.id)}
                       onMouseLeave={() => setHoveredDistrict(null)}
                     />
                     {!isDimmed && (
-                      <text
-                        x={d.labelX}
-                        y={d.labelY}
-                        textAnchor="middle"
-                        fill={d.color}
-                        fontSize="10.5"
-                        fontFamily="Golos Text, sans-serif"
-                        fontWeight="600"
-                        opacity="0.9"
-                        style={{ pointerEvents: "none", userSelect: "none" }}
-                      >
-                        {d.name}
-                      </text>
+                      <g filter="url(#shadow)">
+                        <text
+                          x={d.labelX}
+                          y={d.labelY - 5}
+                          textAnchor="middle"
+                          fill="#ffffff"
+                          fontSize="10"
+                          fontFamily="Oswald, sans-serif"
+                          fontWeight="500"
+                          opacity="0.95"
+                          style={{ pointerEvents: "none", userSelect: "none" }}
+                        >
+                          {d.name}
+                        </text>
+                        <text
+                          x={d.labelX}
+                          y={d.labelY + 8}
+                          textAnchor="middle"
+                          fill={d.color}
+                          fontSize="8.5"
+                          fontFamily="Golos Text, sans-serif"
+                          opacity="0.85"
+                          style={{ pointerEvents: "none", userSelect: "none" }}
+                        >
+                          {d.nameVi}
+                        </text>
+                      </g>
                     )}
                   </g>
                 );
               })}
+
+              <text x="490" y="340" textAnchor="middle" fill="rgba(120,220,255,0.65)" fontSize="10" fontFamily="Oswald, sans-serif" fontStyle="italic" style={{ userSelect: "none" }}>Южно-Китайское</text>
+              <text x="490" y="354" textAnchor="middle" fill="rgba(120,220,255,0.65)" fontSize="10" fontFamily="Oswald, sans-serif" fontStyle="italic" style={{ userSelect: "none" }}>море</text>
 
               {showLayer && visiblePoi.map(poi => (
                 <g
@@ -243,18 +281,18 @@ export default function Index() {
                   <circle
                     cx={poi.x}
                     cy={poi.y}
-                    r={selectedPoi?.id === poi.id ? 14 : 11}
-                    fill={selectedPoi?.id === poi.id ? "rgba(255,255,255,0.2)" : "rgba(14,16,30,0.88)"}
-                    stroke={selectedPoi?.id === poi.id ? "rgba(255,255,255,0.9)" : "rgba(255,255,255,0.5)"}
-                    strokeWidth={selectedPoi?.id === poi.id ? 1.5 : 1}
-                    filter={selectedPoi?.id === poi.id ? "url(#glow)" : ""}
+                    r={selectedPoi?.id === poi.id ? 15 : 12}
+                    fill={selectedPoi?.id === poi.id ? "rgba(255,255,255,0.22)" : "rgba(10,12,28,0.82)"}
+                    stroke={selectedPoi?.id === poi.id ? "rgba(255,255,255,0.95)" : "rgba(255,255,255,0.55)"}
+                    strokeWidth={selectedPoi?.id === poi.id ? 1.8 : 1}
+                    filter={selectedPoi?.id === poi.id ? "url(#glow)" : "url(#shadow)"}
                     style={{ transition: "all 0.2s ease" }}
                   />
                   <text
                     x={poi.x}
                     y={poi.y + 5}
                     textAnchor="middle"
-                    fontSize="11"
+                    fontSize="12"
                     style={{ pointerEvents: "none", userSelect: "none" }}
                   >
                     {poi.emoji}
@@ -279,7 +317,7 @@ export default function Index() {
             )}
 
             <div className="map-controls">
-              <button className="ctrl-btn" title="Сбросить фильтры" onClick={() => { setActiveDistrict(null); setSelectedPoi(null); }}>
+              <button className="ctrl-btn" title="Сбросить" onClick={() => { setActiveDistrict(null); setSelectedPoi(null); }}>
                 <Icon name="Crosshair" size={16} />
               </button>
             </div>
