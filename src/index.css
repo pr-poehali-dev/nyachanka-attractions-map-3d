@@ -469,42 +469,70 @@
   bottom: 64px;
   left: 50%;
   transform: translateX(-50%);
-  background: rgba(18, 20, 38, 0.96);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  border-radius: 14px;
-  padding: 16px 20px;
-  min-width: 220px;
-  max-width: 280px;
-  backdrop-filter: blur(16px);
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
-  animation: slideIn 0.2s ease;
+  background: rgba(14, 16, 30, 0.97);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  overflow: hidden;
+  min-width: 260px;
+  max-width: 300px;
+  backdrop-filter: blur(20px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.6);
+  animation: slideIn 0.22s ease;
+}
+
+.popup-photo-wrap {
+  position: relative;
+  width: 100%;
+  height: 148px;
+  overflow: hidden;
+}
+
+.popup-photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.4s ease;
+}
+
+.poi-popup:hover .popup-photo {
+  transform: scale(1.04);
+}
+
+.popup-photo-emoji {
+  position: absolute;
+  bottom: 10px;
+  left: 14px;
+  font-size: 24px;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.6));
+}
+
+.popup-body {
+  padding: 14px 16px 16px;
 }
 
 .popup-close {
   position: absolute;
   top: 10px;
   right: 10px;
-  background: rgba(255, 255, 255, 0.06);
+  background: rgba(0, 0, 0, 0.45);
   border: none;
-  color: rgba(255, 255, 255, 0.35);
+  color: rgba(255, 255, 255, 0.75);
   border-radius: 6px;
-  width: 22px;
-  height: 22px;
+  width: 24px;
+  height: 24px;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
   transition: all 0.15s;
+  z-index: 2;
+  backdrop-filter: blur(4px);
 }
 
 .popup-close:hover {
-  background: rgba(255, 255, 255, 0.1);
-  color: rgba(255, 255, 255, 0.7);
-}
-
-.popup-emoji {
-  font-size: 28px;
-  margin-bottom: 8px;
+  background: rgba(0, 0, 0, 0.65);
+  color: #fff;
 }
 
 .popup-name {
@@ -514,7 +542,6 @@
   color: #fff;
   margin-bottom: 6px;
   letter-spacing: 0.02em;
-  padding-right: 20px;
 }
 
 .popup-desc {

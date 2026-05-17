@@ -67,16 +67,16 @@ const DISTRICTS = [
 ];
 
 const POI = [
-  { id: 1, name: "Набережная Чан Фу", category: "park", emoji: "🌊", x: 405, y: 285, district: "center", desc: "Главная пешеходная набережная 6 км вдоль пляжа" },
-  { id: 2, name: "Пляж Нячанг", category: "beach", emoji: "🏖️", x: 425, y: 320, district: "center", desc: "Белоснежный городской пляж — визитная карточка города" },
-  { id: 3, name: "Башни Чамов По Нагар", category: "temple", emoji: "🏯", x: 265, y: 170, district: "north", desc: "Индуистские башни VIII–IX вв., архитектурный шедевр" },
-  { id: 4, name: "Рыбный рынок Дам", category: "market", emoji: "🐟", x: 310, y: 150, district: "north", desc: "Самый большой рыбный рынок региона, работает с 4 утра" },
-  { id: 5, name: "Oceanpark Vinpearl", category: "attraction", emoji: "🎡", x: 505, y: 220, district: "island", desc: "Остров-курорт с аквапарком и сафари-парком" },
-  { id: 6, name: "Длинный пляж", category: "beach", emoji: "🏝️", x: 360, y: 445, district: "south", desc: "Самый длинный пляж Нячанга, спокойная вода" },
-  { id: 7, name: "Пагода Лонг Шон", category: "temple", emoji: "🛕", x: 195, y: 220, district: "west", desc: "Буддийская пагода с огромной статуей Будды" },
-  { id: 8, name: "Водопад Бахо", category: "nature", emoji: "💧", x: 155, y: 260, district: "west", desc: "Живописный трёхуровневый водопад в джунглях" },
-  { id: 9, name: "Институт океанографии", category: "museum", emoji: "🐠", x: 380, y: 355, district: "south", desc: "Один из лучших аквариумов Вьетнама" },
-  { id: 10, name: "Ночной рынок", category: "market", emoji: "🌙", x: 355, y: 255, district: "center", desc: "Сувениры, морепродукты, уличная еда до 22:00" },
+  { id: 1, name: "Набережная Чан Фу", category: "park", emoji: "🌊", x: 405, y: 285, district: "center", desc: "Главная пешеходная набережная 6 км вдоль пляжа", photo: "https://cdn.poehali.dev/projects/95cff1ec-7098-44d2-8623-42311ca605b6/files/bcb6bfcb-ca34-471c-9db2-71f3bbaf876f.jpg" },
+  { id: 2, name: "Пляж Нячанг", category: "beach", emoji: "🏖️", x: 425, y: 320, district: "center", desc: "Белоснежный городской пляж — визитная карточка города", photo: "https://cdn.poehali.dev/projects/95cff1ec-7098-44d2-8623-42311ca605b6/files/2b685e84-bf90-422e-abac-3578b683c63f.jpg" },
+  { id: 3, name: "Башни Чамов По Нагар", category: "temple", emoji: "🏯", x: 265, y: 170, district: "north", desc: "Индуистские башни VIII–IX вв., архитектурный шедевр", photo: "https://cdn.poehali.dev/projects/95cff1ec-7098-44d2-8623-42311ca605b6/files/17fe54c0-71e6-4751-9524-2793b3175c63.jpg" },
+  { id: 4, name: "Рыбный рынок Дам", category: "market", emoji: "🐟", x: 310, y: 150, district: "north", desc: "Самый большой рыбный рынок региона, работает с 4 утра", photo: "https://cdn.poehali.dev/projects/95cff1ec-7098-44d2-8623-42311ca605b6/files/d33b965a-fe6e-4f08-85ae-7a77426ca054.jpg" },
+  { id: 5, name: "Oceanpark Vinpearl", category: "attraction", emoji: "🎡", x: 505, y: 220, district: "island", desc: "Остров-курорт с аквапарком и сафари-парком", photo: "https://cdn.poehali.dev/projects/95cff1ec-7098-44d2-8623-42311ca605b6/files/9a1fca40-5f24-4008-8434-b1f3c3dd3341.jpg" },
+  { id: 6, name: "Длинный пляж", category: "beach", emoji: "🏝️", x: 360, y: 445, district: "south", desc: "Самый длинный пляж Нячанга, спокойная вода", photo: "https://cdn.poehali.dev/projects/95cff1ec-7098-44d2-8623-42311ca605b6/files/f76926bb-bf52-4875-8ebe-8510f1c9548a.jpg" },
+  { id: 7, name: "Пагода Лонг Шон", category: "temple", emoji: "🛕", x: 195, y: 220, district: "west", desc: "Буддийская пагода с огромной статуей Будды", photo: "https://cdn.poehali.dev/projects/95cff1ec-7098-44d2-8623-42311ca605b6/files/85231924-4334-44e9-9269-662b291eca57.jpg" },
+  { id: 8, name: "Водопад Бахо", category: "nature", emoji: "💧", x: 155, y: 260, district: "west", desc: "Живописный трёхуровневый водопад в джунглях", photo: "https://cdn.poehali.dev/projects/95cff1ec-7098-44d2-8623-42311ca605b6/files/b473daef-8b3c-4f5c-8d96-69a1b604b74c.jpg" },
+  { id: 9, name: "Институт океанографии", category: "museum", emoji: "🐠", x: 380, y: 355, district: "south", desc: "Один из лучших аквариумов Вьетнама", photo: "https://cdn.poehali.dev/projects/95cff1ec-7098-44d2-8623-42311ca605b6/files/39e65e16-ca84-478f-912d-67bc3fadcd35.jpg" },
+  { id: 10, name: "Ночной рынок", category: "market", emoji: "🌙", x: 355, y: 255, district: "center", desc: "Сувениры, морепродукты, уличная еда до 22:00", photo: "https://cdn.poehali.dev/projects/95cff1ec-7098-44d2-8623-42311ca605b6/files/c3c8abb3-bc4f-4f26-8cb1-076713ce6385.jpg" },
 ];
 
 const CATEGORIES = [
@@ -306,12 +306,21 @@ export default function Index() {
                 <button className="popup-close" onClick={() => setSelectedPoi(null)}>
                   <Icon name="X" size={12} />
                 </button>
-                <div className="popup-emoji">{selectedPoi.emoji}</div>
-                <h4 className="popup-name">{selectedPoi.name}</h4>
-                <p className="popup-desc">{selectedPoi.desc}</p>
-                <div className="popup-district">
-                  <Icon name="MapPin" size={11} />
-                  <span>{DISTRICTS.find(d => d.id === selectedPoi.district)?.name} район</span>
+                <div className="popup-photo-wrap">
+                  <img
+                    src={selectedPoi.photo}
+                    alt={selectedPoi.name}
+                    className="popup-photo"
+                  />
+                  <div className="popup-photo-emoji">{selectedPoi.emoji}</div>
+                </div>
+                <div className="popup-body">
+                  <h4 className="popup-name">{selectedPoi.name}</h4>
+                  <p className="popup-desc">{selectedPoi.desc}</p>
+                  <div className="popup-district">
+                    <Icon name="MapPin" size={11} />
+                    <span>{DISTRICTS.find(d => d.id === selectedPoi.district)?.name} район</span>
+                  </div>
                 </div>
               </div>
             )}
